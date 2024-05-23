@@ -1,5 +1,6 @@
 import { VALIDATE } from "@/validates/validate";
 import { reactive } from "vue";
+import { validateConfirmPassword } from '@/validates/common'
 
 const formLoginRules = () => {
   const formData = reactive({
@@ -107,6 +108,10 @@ const formLoginRules = () => {
         message: "password is required",
         trigger: "blur",
       },
+      {
+        trigger: "blur",
+        validator: validateConfirmPassword(formDataRegister),
+      }
     ]
   };
   return { loginRules, formData, formDataRegister, registerRules };
